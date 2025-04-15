@@ -36,6 +36,8 @@ def main():
 		pygame.display.flip()
 		dt = fps_clock.tick(60) / 1000
 		updatable_group.update(dt)
-
+		for asteroid in asteroid_group:
+			if player.collision(asteroid):
+				exit("Game Over!")
 if __name__ == "__main__":
     main()
