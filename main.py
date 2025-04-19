@@ -33,14 +33,23 @@ def main():
         			return
 
 		screen.fill("black")
+
 		for drawable in drawable_group:
 			drawable.draw(screen)
 
 		pygame.display.flip()
 		dt = fps_clock.tick(60) / 1000
 		updatable_group.update(dt)
+
 		for asteroid in asteroid_group:
 			if player.collision(asteroid):
 				exit("Game Over!")
+
+		for asteroid in asteroid_group:
+			for shot in shot_group:
+				if shot.collision(asteroid):
+					shot.kill()
+					asteroid.kill()
+
 if __name__ == "__main__":
     main()
